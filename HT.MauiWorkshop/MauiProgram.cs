@@ -20,6 +20,8 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<AddCarPage>();
 		builder.Services.AddSingleton<AddCarViewModel>();
+		builder.Services.AddSingleton<CarListPage>();
+		builder.Services.AddSingleton<CarListViewModel>();
 
 		builder.Services.AddTransient<ISqliteConnection, SqliteConnection>();
 		builder.Services.AddTransient<ICarRepository, CarRepository>();
