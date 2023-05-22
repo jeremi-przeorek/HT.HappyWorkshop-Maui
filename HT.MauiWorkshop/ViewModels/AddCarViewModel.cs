@@ -1,63 +1,26 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace HT.MauiWorkshop.ViewModels;
 
-public class AddCarViewModel : BaseViewModel
+public partial class AddCarViewModel : BaseViewModel
 {
-    private string _make;
-    private string _model;
-    private string _year;
-    private string _price;
-
-    public string Make
-    {
-        get => _make;
-        set
-        {
-            if (SetField(ref _make, value))
-            {
-                ((Command)AddCarCommand).ChangeCanExecute();
-            }
-        }
-    }
-
-    public string Model
-    {
-        get => _model;
-        set
-        {
-            if (SetField(ref _model, value))
-            {
-                ((Command)AddCarCommand).ChangeCanExecute();
-            }
-        }
-    }
-
-    public string Year
-    {
-        get => _year;
-        set
-        {
-            if (SetField(ref _year, value))
-            {
-                ((Command)AddCarCommand).ChangeCanExecute();
-            }
-        }
-    }
-
-    public string Price
-    {
-        get => _price;
-        set
-        {
-            if (SetField(ref _price, value))
-            {
-                ((Command)AddCarCommand).ChangeCanExecute();
-            }
-        }
-    }
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(AddCarCommand))]
+    private string make;
+    
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(AddCarCommand))]
+    private string model;
+    
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(AddCarCommand))]
+    private string year;
+    
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(AddCarCommand))]
+    private string price;
 
     public List<string> Makes { get; set; } = new List<string>()
     {
@@ -70,16 +33,11 @@ public class AddCarViewModel : BaseViewModel
         "Austin", "Austin-Healey", "Bentley", "BMW", "Bugatti", "Buick", "Cadillac", "Chevrolet"
     };
 
-    public ICommand AddCarCommand { get; }
+    private bool CanAddCar =>
+        !string.IsNullOrWhiteSpace(Make) && !string.IsNullOrWhiteSpace(Model) &&
+        !string.IsNullOrWhiteSpace(Year) && !string.IsNullOrWhiteSpace(Price);
 
-    public AddCarViewModel()
-    {
-        AddCarCommand = new Command(AddCar, CanAddCar);
-    }
-
-    private bool CanAddCar() => !string.IsNullOrWhiteSpace(Make) && !string.IsNullOrWhiteSpace(Model) &&
-                                !string.IsNullOrWhiteSpace(Year) && !string.IsNullOrWhiteSpace(Price);
-
+    [RelayCommand(CanExecute = nameof(CanAddCar))]
     private void AddCar()
     {
         //Hello there
