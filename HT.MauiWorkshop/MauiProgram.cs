@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using HT.MauiWorkshop.Pages;
+using HT.MauiWorkshop.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace HT.MauiWorkshop;
 
@@ -15,6 +17,9 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+		builder.Services.AddSingleton<AddCarPage>();
+		builder.Services.AddSingleton<AddCarViewModel>();
+		
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif

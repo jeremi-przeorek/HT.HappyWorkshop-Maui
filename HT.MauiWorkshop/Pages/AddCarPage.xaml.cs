@@ -1,16 +1,14 @@
-﻿namespace HT.MauiWorkshop.Pages;
+﻿using HT.MauiWorkshop.ViewModels;
+
+namespace HT.MauiWorkshop.Pages;
 
 public partial class AddCarPage : ContentPage
 {
-	public AddCarPage()
+	public AddCarPage(AddCarViewModel vm)
 	{
 		InitializeComponent();
-
-		Picker.Items.Add("Tesla");
-		Picker.Items.Add("Ford");
-		Picker.Items.Add("GM");
-		Picker.Items.Add("Toyota");
-		Picker.Items.Add("Honda");
+		
+		BindingContext = vm;
 	}
 }
 
