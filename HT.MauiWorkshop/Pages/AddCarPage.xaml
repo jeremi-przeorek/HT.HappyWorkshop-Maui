@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HT.MauiWorkshop.Pages.AddCarPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="16"
+            Padding="30,0"
+            Margin="0,16,0,0"
+            VerticalOptions="Start">
+
+            <Label Text="Car details"
+                   FontSize="16" />
+            <Picker Title="Make" x:Name="Picker" />
+            <Entry Placeholder="Model" />
+            <Entry Placeholder="Year" Keyboard="Numeric" />
+            <Entry Placeholder="Price in PLN" Keyboard="Numeric"  />
+            <Button Text="Add"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
