@@ -1,6 +1,8 @@
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using HT.MauiWorkshop.Models;
+using HT.MauiWorkshop.Repository;
 
 namespace HT.MauiWorkshop.ViewModels;
 
@@ -22,6 +24,8 @@ public partial class AddCarViewModel : BaseViewModel
     [NotifyCanExecuteChangedFor(nameof(AddCarCommand))]
     private string price;
 
+    private readonly ICarRepository _carRepository;
+
     public List<string> Makes { get; set; } = new List<string>()
     {
         "Tesla", "Ford", "Chevrolet", "Toyota", "Honda", "Nissan", "BMW",
@@ -37,10 +41,21 @@ public partial class AddCarViewModel : BaseViewModel
         !string.IsNullOrWhiteSpace(Make) && !string.IsNullOrWhiteSpace(Model) &&
         !string.IsNullOrWhiteSpace(Year) && !string.IsNullOrWhiteSpace(Price);
 
-    [RelayCommand(CanExecute = nameof(CanAddCar))]
-    private void AddCar()
+    public AddCarViewModel(ICarRepository carRepository)
     {
-        //Hello there
-        var a = 10;
+        _carRepository = carRepository ?? throw new ArgumentNullException(nameof(carRepository));
+    }
+
+    [RelayCommand(CanExecute = nameof(CanAddCar))]
+    private async Task AddCar()
+    {
+        try
+        {
+            await _carRepository.AddCarAsync(new Car(null, Make, Model, Year, Price));
+        }
+        catch (Exception e)
+        {
+            await Shell.Current.DisplayAlert("Error", e.Message, "Ok");
+        }
     }
 }

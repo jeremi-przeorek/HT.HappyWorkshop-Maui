@@ -1,4 +1,5 @@
 ﻿using HT.MauiWorkshop.Pages;
+using HT.MauiWorkshop.Repository;
 using HT.MauiWorkshop.ViewModels;
 using Microsoft.Extensions.Logging;
 
@@ -19,6 +20,9 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<AddCarPage>();
 		builder.Services.AddSingleton<AddCarViewModel>();
+
+		builder.Services.AddTransient<ISqliteConnection, SqliteConnection>();
+		builder.Services.AddTransient<ICarRepository, CarRepository>();
 		
 #if DEBUG
 		builder.Logging.AddDebug();
