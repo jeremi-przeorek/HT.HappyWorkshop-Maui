@@ -5,25 +5,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:HT.MauiWorkshop"
     xmlns:pages="clr-namespace:HT.MauiWorkshop.Pages"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Flyout">
 
-    <TabBar>
-        <Tab Title="Add"
+    
+        <FlyoutItem Title="Add"
              Icon="circle_plus_solid.svg">
             <ShellContent
                 Title="Home"
                 ContentTemplate="{DataTemplate pages:AddCarPage}"
                 Route="MainPage" />
-            </Tab>
+            </FlyoutItem>
 
-        <Tab Title="List"
+        <FlyoutItem Title="List"
              Icon="car_solid.svg">
             <ShellContent
                 Title="List"
                 Route="List"
                 ContentTemplate="{DataTemplate pages:CarListPage}" />
-        </Tab>
-    </TabBar>
+        </FlyoutItem>
 
 </Shell>
 
