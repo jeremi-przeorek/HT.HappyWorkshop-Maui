@@ -1,5 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using HT.MauiWorkshop.Models;
+using HT.MauiWorkshop.Pages;
 using HT.MauiWorkshop.Repository;
 
 namespace HT.MauiWorkshop.ViewModels;
@@ -18,5 +20,11 @@ public partial class CarListViewModel : BaseViewModel
     public override async Task OnAppearing()
     {
         Cars = await _carRepository.GetCarsAsync();
+    }
+    
+    [RelayCommand]
+    private void GoToDetailsPage(Car car)
+    {
+        Shell.Current.GoToAsync($"{nameof(CarDetailsPage)}?carId={car.Id}");
     }
 }

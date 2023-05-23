@@ -8,15 +8,16 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <Tab Title="List"
-             Icon="Home">
+        <Tab Title="Add"
+             Icon="circle_plus_solid.svg">
             <ShellContent
                 Title="Home"
                 ContentTemplate="{DataTemplate pages:AddCarPage}"
                 Route="MainPage" />
             </Tab>
 
-        <Tab Title="Add">
+        <Tab Title="List"
+             Icon="car_solid.svg">
             <ShellContent
                 Title="List"
                 Route="List"

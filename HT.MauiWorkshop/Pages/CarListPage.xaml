@@ -13,7 +13,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:Car">
                     <TextCell Text="{Binding Make}"
-                              Detail="{Binding Model}" />
+                              Detail="{Binding Model}"
+                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CarListViewModel}}, Path=GoToDetailsPageCommand}"
+                              CommandParameter="{Binding .}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
